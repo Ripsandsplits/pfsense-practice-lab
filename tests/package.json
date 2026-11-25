@@ -1,0 +1,12 @@
+{
+  "name": "pfsense-practice-lab-development-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node run-controller-wasm.mjs && node run-native-wasm.mjs"
+  },
+  "dependencies": {
+    "@php-wasm/node": "3.1.64",
+    "@php-wasm/universal": "3.1.64"
+  }
+}

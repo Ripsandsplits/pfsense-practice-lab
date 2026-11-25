@@ -1,0 +1,109 @@
+pfSense practice lab 1.0.0 -- validation results
+Release check: November 19, 2026 (America/Los_Angeles)
+Runtime: PHP 8.3 WebAssembly, Node.js 24.22.3, @php-wasm/node and universal 3.1.64
+
+63 controller assertions and 12 mocked native-adapter assertions passed.
+Both included WebAssembly harnesses were also executed successfully from their packaged paths.
+Production PHP sources parsed successfully. Shell syntax, help, and Linux refusal passed.
+No running pfSense or FreeBSD VM was available; no native integration result is claimed.
+See VALIDATION.md for the required disposable-clone acceptance test.
+
+PASS seed preview succeeds
+PASS seed preview writes no files, accounts, or configuration
+PASS seed apply requires both lab acknowledgments
+PASS invalid command/options refused: seed --interface wan
+PASS invalid command/options refused: preflight --interface lan --port 22
+PASS invalid command/options refused: preflight --interface lan --port no
+PASS invalid command/options refused: status --apply
+PASS invalid command/options refused: reset --apply --apply
+PASS invalid command/options refused: reset --unknown
+PASS invalid command/options refused: preflight --interface
+PASS listening target port refused
+PASS HA synchronization peer refused
+PASS upstream interface refused
+PASS disabled interface refused
+PASS seed adds exactly two managed/OS accounts
+PASS new accounts use distinct non-root UIDs
+PASS generated account names fit 16-character limit
+PASS existing password hashes and configured SSH keys unchanged
+PASS existing unmanaged authorized_keys untouched
+PASS NAT, aliases, addressing and DHCP untouched
+PASS management settings unchanged
+PASS practice rule limited to firewall-local IPv4 TCP high port
+PASS public key is forced-command, restricted, loopback-only
+PASS manifest contains no account password hash or private key
+PASS fake credentials cannot authenticate privileged practice account
+PASS state and sensitive backups are private
+PASS grade returns 2 for eight live artifact categories
+PASS duplicate seed refused while active
+PASS reset preview does not mutate
+PASS selective reset succeeds
+PASS reset preserves original users and added student setting
+PASS reset preserves student NAT
+PASS reset preserves baseline and student rules
+PASS reset preserves baseline and student cron
+PASS reset removes only generated UID group memberships
+PASS nextuid restored when no later allocation occurred
+PASS OS cleanup preserves original accounts and unmanaged keys
+PASS changed artifact file retained byte-for-byte
+PASS account home and student work retained
+PASS reset verifies all eight live categories absent
+PASS repeated reset is idempotent
+PASS new exercise after reset uses fresh resource names
+PASS later UID allocator changes preserved
+PASS reset refuses running seeded-account processes before mutations
+PASS config username/UID identity conflict refused
+PASS OS username/UID identity conflict refused
+PASS reused rule tracker without lab label refused
+PASS reload failure rolls back recorded artifacts selectively
+PASS failure after config commit is recoverable
+PASS account generator failure triggers selective rollback
+PASS failed reset records recoverable phase
+PASS retry completes interrupted reset
+PASS owned-path symlink is unlinked without following its target
+PASS insecure manifest directory refused
+PASS changed parent symlink refused before reset mutation
+PASS verify-reset refuses to claim a clean run without a manifest
+PASS concurrent config change is preserved during failed seed cleanup
+PASS silent native reload failure detected and cleaned up
+PASS persistent write failure leaves an explicit recovery journal
+PASS reset recovers after native writer becomes available
+PASS journal from interrupted config-writing phase resets
+PASS malformed allocator metadata refused before mutation
+PASS changed missing account home refused even when neither path resolves
+63 controller assertions passed; native pfSense/FreeBSD integration is not exercised.
+
+PASS native bootstrap/API discovery passes mocked platform: Preflight passed: lan (vtnet1), static IPv4 192.0.2.1, TCP 46290 unused.
+Isolation, snapshot, and console access must be checked by the operator.
+
+PASS native seed preview does not change saved config
+PASS native adapter seeds through mocked pfSense APIs: Preflight passed: lan (vtnet1), static IPv4 192.0.2.1, TCP 46290 unused.
+Isolation, snapshot, and console access must be checked by the operator.
+Plan: two new accounts, restricted SSH public-key artifact, one interface pass rule,
+      one logging cron job, startup logger, fake credentials, and a text web marker.
+Existing accounts/keys/management settings are not edited. No listener or reboot.
+Seeded and verified run 20261120T040442Z-f50a1b6b9a. Use status/grade for instructor inventory.
+
+PASS local_user_set called only for two generated accounts
+PASS native write preserves existing user/password/key and NAT data
+PASS temporary key pair is removed before seed completes
+PASS native runtime/config inventory observes all eight categories
+PASS native adapter selectively resets through mocked APIs: Reset plan for 20261120T040442Z-f50a1b6b9a: remove matching generated accounts, tagged rules/cron,
+and the three recorded exercise paths. Preserve current contents and account homes.
+Retained home: /conf/ccdc-practice/20261120T040442Z-f50a1b6b9a/retained/home-ccla_f50a1b6b9a
+Retained home: /conf/ccdc-practice/20261120T040442Z-f50a1b6b9a/retained/home-cclk_f50a1b6b9a
+Reset verified. Sensitive backups, retained evidence, logs and config history remain.
+
+PASS native reset preserves baseline users, rule and cron
+PASS OS deletion never requests recursive home deletion
+PASS native adapter verifies live reset inventory
+PASS native reset repeat succeeds
+12 native adapter assertions passed with mocked platform, APIs, and commands; not real pfSense integration.
+
+PASS PHP parser: lib_lab.php
+PASS PHP parser: lib_native.php
+PASS PHP parser: tests_controller-test.php
+
+PASS sh -n lab.sh
+PASS help exits 0
+PASS status refuses Linux with exit 1
